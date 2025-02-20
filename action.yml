@@ -24,6 +24,10 @@ inputs:
     description: "Additional options to pass to `docker compose down` command."
     required: false
     default: ""
+  push-flags:
+    description: "Additional options to pass to `docker compose push` command."
+    required: false
+    default: ""
   compose-flags:
     description: "Additional options to pass to `docker compose` command."
     required: false
