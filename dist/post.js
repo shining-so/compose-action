@@ -26397,7 +26397,7 @@ class DockerComposeService {
             ...this.getCommonOptions(optionsInputs),
             commandOptions: pushFlags,
         };
-        await (0, docker_compose_1.pullAll)(options);
+        await (0, docker_compose_1.push)(options);
     }
     async logs({ services, ...optionsInputs }) {
         const options = {

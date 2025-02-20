@@ -5,7 +5,7 @@ import {
   logs,
   upAll,
   upMany,
-  pullAll,
+  push,
 } from "docker-compose";
 import { Inputs } from "./input.service";
 
@@ -52,7 +52,7 @@ export class DockerComposeService {
       commandOptions: pushFlags,
     };
 
-    await pullAll(options);
+    await push(options);
   }
 
   async logs({ services, ...optionsInputs }: LogsInputs): Promise<{

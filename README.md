@@ -44,7 +44,7 @@ Some extra options can be passed to the `docker compose down` command using the 
 <!-- start usage -->
 
 ```yaml
-- uses: shining-so/compose-action@v0.0.0
+- uses: shining-so/compose-action@v2.3.1
   with:
     # Description: Additional options to pass to `docker` command.
     #
@@ -137,7 +137,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Run docker compose
-        uses: shining-so/compose-action@v2.3.0
+        uses: shining-so/compose-action@v2.3.1
         with:
           compose-file: "./docker/docker-compose.yml"
 
@@ -154,7 +154,7 @@ jobs:
 ```yaml
 steps:
   - uses: actions/checkout@v4
-  - uses: shining-so/compose-action@v2.3.0
+  - uses: shining-so/compose-action@v2.3.1
     with:
       compose-file: "./docker/docker-compose.yml"
     env:
@@ -169,7 +169,7 @@ Perform `docker compose up` to some given service instead of all of them
 steps:
   # need checkout before using compose-action
   - uses: actions/checkout@v3
-  - uses: shining-so/compose-action@v2.3.0
+  - uses: shining-so/compose-action@v2.3.1
     with:
       compose-file: "./docker/docker-compose.yml"
       services: |
@@ -202,7 +202,7 @@ list of flags can be found in the
 steps:
   # need checkout before using compose-action
   - uses: actions/checkout@v3
-  - uses: shining-so/compose-action@v2.3.0
+  - uses: shining-so/compose-action@v2.3.1
     with:
       compose-file: "./docker/docker-compose.yml"
       services: |
