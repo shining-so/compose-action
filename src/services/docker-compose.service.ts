@@ -5,6 +5,7 @@ import {
   logs,
   upAll,
   upMany,
+  push,
 } from "docker-compose";
 import { Inputs } from "./input.service";
 
@@ -18,6 +19,7 @@ type OptionsInputs = {
 
 export type UpInputs = OptionsInputs & { upFlags: Inputs["upFlags"]; services: Inputs["services"] };
 export type DownInputs = OptionsInputs & { downFlags: Inputs["downFlags"] };
+export type PushInputs = OptionsInputs & { pushFlags: Inputs["pushFlags"] };
 export type LogsInputs = OptionsInputs & { services: Inputs["services"] };
 
 export class DockerComposeService {
@@ -42,6 +44,15 @@ export class DockerComposeService {
     };
 
     await down(options);
+  }
+
+  async push({ pushFlags, ...optionsInputs }: PushInputs): Promise<void> {
+    const options: IDockerComposeOptions = {
+      ...this.getCommonOptions(optionsInputs),
+      commandOptions: pushFlags,
+    };
+
+    await push(options);
   }
 
   async logs({ services, ...optionsInputs }: LogsInputs): Promise<{

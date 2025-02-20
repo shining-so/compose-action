@@ -9,6 +9,7 @@ export type Inputs = {
   composeFlags: string[];
   upFlags: string[];
   downFlags: string[];
+  pushFlags: string[];
   cwd: string;
   composeVersion: string | null;
   githubToken: string | null;
@@ -21,6 +22,7 @@ export enum InputNames {
   ComposeFlags = "compose-flags",
   UpFlags = "up-flags",
   DownFlags = "down-flags",
+  PushFlags = "push-flags",
   Cwd = "cwd",
   ComposeVersion = "compose-version",
   GithubToken = "github-token",
@@ -37,6 +39,7 @@ export class InputService {
       composeFlags: this.getComposeFlags(),
       upFlags: this.getUpFlags(),
       downFlags: this.getDownFlags(),
+      pushFlags: this.getPushFlags(),
       cwd: this.getCwd(),
       composeVersion: this.getComposeVersion(),
       githubToken: this.getGithubToken(),
@@ -86,6 +89,10 @@ export class InputService {
 
   private getDownFlags(): string[] {
     return this.parseFlags(getInput(InputNames.DownFlags));
+  }
+
+  private getPushFlags(): string[] {
+    return this.parseFlags(getInput(InputNames.PushFlags));
   }
 
   private parseFlags(flags: string | null): string[] {
