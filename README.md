@@ -12,7 +12,7 @@
 <!-- end title -->
 <!-- start badges -->
 
-<a href="https%3A%2F%2Fgithub.com%2Fhoverkraft-tech%2Fcompose-action%2Freleases%2Flatest"><img src="https://img.shields.io/github/v/release/hoverkraft-tech/compose-action?display_name=tag&sort=semver&logo=github&style=flat-square" alt="Release%20by%20tag" /></a><a href="https%3A%2F%2Fgithub.com%2Fhoverkraft-tech%2Fcompose-action%2Freleases%2Flatest"><img src="https://img.shields.io/github/release-date/hoverkraft-tech/compose-action?display_name=tag&sort=semver&logo=github&style=flat-square" alt="Release%20by%20date" /></a><img src="https://img.shields.io/github/last-commit/hoverkraft-tech/compose-action?logo=github&style=flat-square" alt="Commit" /><a href="https%3A%2F%2Fgithub.com%2Fhoverkraft-tech%2Fcompose-action%2Fissues"><img src="https://img.shields.io/github/issues/hoverkraft-tech/compose-action?logo=github&style=flat-square" alt="Open%20Issues" /></a><img src="https://img.shields.io/github/downloads/hoverkraft-tech/compose-action/total?logo=github&style=flat-square" alt="Downloads" />
+<a href="https%3A%2F%2Fgithub.com%2Fhoverkraft-tech%2Fcompose-action%2Freleases%2Flatest"><img src="https://img.shields.io/github/v/release/shining-so/compose-action?display_name=tag&sort=semver&logo=github&style=flat-square" alt="Release%20by%20tag" /></a><a href="https%3A%2F%2Fgithub.com%2Fhoverkraft-tech%2Fcompose-action%2Freleases%2Flatest"><img src="https://img.shields.io/github/release-date/shining-so/compose-action?display_name=tag&sort=semver&logo=github&style=flat-square" alt="Release%20by%20date" /></a><img src="https://img.shields.io/github/last-commit/shining-so/compose-action?logo=github&style=flat-square" alt="Commit" /><a href="https%3A%2F%2Fgithub.com%2Fhoverkraft-tech%2Fcompose-action%2Fissues"><img src="https://img.shields.io/github/issues/shining-so/compose-action?logo=github&style=flat-square" alt="Open%20Issues" /></a><img src="https://img.shields.io/github/downloads/shining-so/compose-action/total?logo=github&style=flat-square" alt="Downloads" />
 
 <!-- end badges -->
 
@@ -44,7 +44,7 @@ Some extra options can be passed to the `docker compose down` command using the 
 <!-- start usage -->
 
 ```yaml
-- uses: hoverkraft-tech/compose-action@v0.0.0
+- uses: shining-so/compose-action@v0.0.0
   with:
     # Description: Additional options to pass to `docker` command.
     #
@@ -69,6 +69,11 @@ Some extra options can be passed to the `docker compose down` command using the 
     #
     # Default:
     down-flags: ""
+
+    # Description: Additional options to pass to `docker compose push` command.
+    #
+    # Default:
+    push-flags: ""
 
     # Description: Additional options to pass to `docker compose` command.
     #
@@ -105,6 +110,7 @@ Some extra options can be passed to the `docker compose down` command using the 
 | <code>services</code>        | Services to perform docker compose up.                                                                                                           |                                      | **false**    |
 | <code>up-flags</code>        | Additional options to pass to <code>docker compose up</code> command.                                                                            |                                      | **false**    |
 | <code>down-flags</code>      | Additional options to pass to <code>docker compose down</code> command.                                                                          |                                      | **false**    |
+| <code>push-flags</code>      | Additional options to pass to <code>docker compose push</code> command.                                                                          |                                      | **false**    |
 | <code>compose-flags</code>   | Additional options to pass to <code>docker compose</code> command.                                                                               |                                      | **false**    |
 | <code>cwd</code>             | Current working directory                                                                                                                        | <code>${{ github.workspace }}</code> | **false**    |
 | <code>compose-version</code> | Compose version to use.<br />If null (default), it will use the current installed version.<br />If "latest", it will install the latest version. |                                      | **false**    |
@@ -131,7 +137,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Run docker compose
-        uses: hoverkraft-tech/compose-action@v2.0.1
+        uses: shining-so/compose-action@v2.3.0
         with:
           compose-file: "./docker/docker-compose.yml"
 
@@ -148,7 +154,7 @@ jobs:
 ```yaml
 steps:
   - uses: actions/checkout@v4
-  - uses: hoverkraft-tech/compose-action@v2.0.1
+  - uses: shining-so/compose-action@v2.3.0
     with:
       compose-file: "./docker/docker-compose.yml"
     env:
@@ -163,7 +169,7 @@ Perform `docker compose up` to some given service instead of all of them
 steps:
   # need checkout before using compose-action
   - uses: actions/checkout@v3
-  - uses: hoverkraft-tech/compose-action@v2.0.1
+  - uses: shining-so/compose-action@v2.3.0
     with:
       compose-file: "./docker/docker-compose.yml"
       services: |
@@ -196,7 +202,7 @@ list of flags can be found in the
 steps:
   # need checkout before using compose-action
   - uses: actions/checkout@v3
-  - uses: hoverkraft-tech/compose-action@v2.0.1
+  - uses: shining-so/compose-action@v2.3.0
     with:
       compose-file: "./docker/docker-compose.yml"
       services: |
