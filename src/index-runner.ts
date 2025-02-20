@@ -46,18 +46,16 @@ export async function run(): Promise<void> {
     });
     loggerService.info("docker compose service(s) are up");
 
-    if (inputs.pushFlags.length) {
-      loggerService.info("Pushing docker compose service(s)");
-      await dockerComposeService.push({
-        dockerFlags: inputs.dockerFlags,
-        composeFiles: inputs.composeFiles,
-        composeFlags: inputs.composeFlags,
-        cwd: inputs.cwd,
-        pushFlags: inputs.pushFlags,
-        debug: loggerService.debug,
-      });
-      loggerService.info("docker compose service(s) are pushed");
-    }
+    loggerService.info("Pushing docker compose service(s)");
+    await dockerComposeService.push({
+      dockerFlags: inputs.dockerFlags,
+      composeFiles: inputs.composeFiles,
+      composeFlags: inputs.composeFlags,
+      cwd: inputs.cwd,
+      pushFlags: inputs.pushFlags,
+      debug: loggerService.debug,
+    });
+    loggerService.info("docker compose service(s) are pushed");
   } catch (error) {
     setFailed(`${error instanceof Error ? error : JSON.stringify(error)}`);
   }
