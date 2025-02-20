@@ -33181,6 +33181,16 @@ async function run() {
             debug: loggerService.debug,
         });
         loggerService.info("docker compose service(s) are up");
+        loggerService.info("Pushing docker compose service(s)");
+        await dockerComposeService.push({
+            dockerFlags: inputs.dockerFlags,
+            composeFiles: inputs.composeFiles,
+            composeFlags: inputs.composeFlags,
+            cwd: inputs.cwd,
+            pushFlags: inputs.pushFlags,
+            debug: loggerService.debug,
+        });
+        loggerService.info("docker compose service(s) are pushed");
     }
     catch (error) {
         (0, core_1.setFailed)(`${error instanceof Error ? error : JSON.stringify(error)}`);
@@ -33303,6 +33313,13 @@ class DockerComposeService {
         };
         await (0, docker_compose_1.down)(options);
     }
+    async push({ pushFlags, ...optionsInputs }) {
+        const options = {
+            ...this.getCommonOptions(optionsInputs),
+            commandOptions: pushFlags,
+        };
+        await (0, docker_compose_1.pullAll)(options);
+    }
     async logs({ services, ...optionsInputs }) {
         const options = {
             ...this.getCommonOptions(optionsInputs),
@@ -33350,6 +33367,7 @@ var InputNames;
     InputNames["ComposeFlags"] = "compose-flags";
     InputNames["UpFlags"] = "up-flags";
     InputNames["DownFlags"] = "down-flags";
+    InputNames["PushFlags"] = "push-flags";
     InputNames["Cwd"] = "cwd";
     InputNames["ComposeVersion"] = "compose-version";
     InputNames["GithubToken"] = "github-token";
@@ -33364,6 +33382,7 @@ class InputService {
             composeFlags: this.getComposeFlags(),
             upFlags: this.getUpFlags(),
             downFlags: this.getDownFlags(),
+            pushFlags: this.getPushFlags(),
             cwd: this.getCwd(),
             composeVersion: this.getComposeVersion(),
             githubToken: this.getGithubToken(),
@@ -33402,6 +33421,9 @@ class InputService {
     }
     getDownFlags() {
         return this.parseFlags((0, core_1.getInput)(InputNames.DownFlags));
+    }
+    getPushFlags() {
+        return this.parseFlags((0, core_1.getInput)(InputNames.PushFlags));
     }
     parseFlags(flags) {
         if (!flags) {
