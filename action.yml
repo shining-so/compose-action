@@ -1,6 +1,6 @@
-name: "Docker Compose Action"
+name: "Docker Compose Action with Push"
 description: "This action runs your compose file(s) and clean up before action finished"
-author: "Hoverkraft"
+author: "Shining"
 branding:
   icon: anchor
   color: gray-dark
